@@ -1,11 +1,8 @@
-package com.example.appsale29032022.data.model;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+package com.svute.appsale.data.model;
 
 import java.util.List;
 
-public class Order {
+public class OrderDTO {
 
     private String id;
 
@@ -13,8 +10,11 @@ public class Order {
     private String idUser;
     private Integer price;
     private Boolean status;
+    private String date_created;
 
-    public Order(String id, List<Food> foods, String idUser, Integer price, Boolean status) {
+
+
+    public OrderDTO(String id, List<Food> foods, String idUser, Integer price, Boolean status) {
         this.id = id;
         this.foods = foods;
         this.idUser = idUser;
@@ -22,6 +22,22 @@ public class Order {
         this.status = status;
     }
 
+    public OrderDTO(String id, List<Food> foods, String idUser, Integer price, Boolean status, String date_created) {
+        this.id = id;
+        this.foods = foods;
+        this.idUser = idUser;
+        this.price = price;
+        this.status = status;
+        this.date_created = date_created;
+    }
+
+    public String getDate_created() {
+        return date_created;
+    }
+
+    public void setDate_created(String date_created) {
+        this.date_created = date_created;
+    }
     public String getId() {
         return id;
     }
