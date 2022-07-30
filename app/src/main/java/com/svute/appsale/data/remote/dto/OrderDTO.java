@@ -1,11 +1,14 @@
-package com.example.appsale29032022.data.remote.dto;
+package com.svute.appsale.data.remote.dto;
 
-import com.example.appsale29032022.data.model.Food;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.svute.appsale.data.model.Food;
 
 import java.util.List;
 
+/**
+ * Created by Ogata on 7/25/2022.
+ */
 public class OrderDTO {
 
     @SerializedName("_id")
@@ -17,6 +20,15 @@ public class OrderDTO {
     private String idUser;
     private Integer price;
     private Boolean status;
+    private String date_created;
+
+    public String getDate_created() {
+        return date_created;
+    }
+
+    public void setDate_created(String date_created) {
+        this.date_created = date_created;
+    }
 
     public String getId() {
         return id;

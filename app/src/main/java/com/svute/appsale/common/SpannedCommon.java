@@ -1,4 +1,4 @@
-package com.example.appsale29032022.common;
+package com.svute.appsale.common;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;
@@ -9,7 +9,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import com.example.appsale29032022.R;
+import com.svute.appsale.R;
 
 /**
  * Created by pphat on 7/16/2022.

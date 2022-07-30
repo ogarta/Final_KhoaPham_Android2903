@@ -1,16 +1,15 @@
-package com.example.appsale29032022.presentation.view.activity.sign_in;
+package com.svute.appsale.presentation.view.activity.sign_in;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.appsale29032022.data.model.User;
-import com.example.appsale29032022.data.remote.dto.AppResource;
-import com.example.appsale29032022.data.remote.dto.UserDTO;
-import com.example.appsale29032022.data.repository.AuthenticationRepository;
+import com.svute.appsale.data.model.User;
+import com.svute.appsale.data.remote.dto.AppResource;
+import com.svute.appsale.data.remote.dto.UserDTO;
+import com.svute.appsale.data.repository.AuthenticationRepository;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,7 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by pphat on 7/14/2022.
+ * Created by Ogata on 7/25/2022.
  */
 public class SignInViewModel extends ViewModel {
     private final AuthenticationRepository authenticationRepository;

@@ -1,19 +1,18 @@
-package com.example.appsale29032022.data.repository;
+package com.svute.appsale.data.repository;
 
 import android.content.Context;
 
-import com.example.appsale29032022.data.model.Food;
-import com.example.appsale29032022.data.remote.ApiService;
-import com.example.appsale29032022.data.remote.RetrofitClient;
-import com.example.appsale29032022.data.remote.dto.AppResource;
-import com.example.appsale29032022.data.remote.dto.FoodDTO;
+import com.svute.appsale.data.remote.ApiService;
+import com.svute.appsale.data.remote.RetrofitClient;
+import com.svute.appsale.data.remote.dto.AppResource;
+import com.svute.appsale.data.remote.dto.FoodDTO;
 
 import java.util.List;
 
 import retrofit2.Call;
 
 /**
- * Created by pphat on 7/19/2022.
+ * Created by Ogata on 7/25/2022.
  */
 public class FoodRepository {
     private ApiService apiService;

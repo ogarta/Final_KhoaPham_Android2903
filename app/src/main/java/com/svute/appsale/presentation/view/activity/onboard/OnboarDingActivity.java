@@ -22,6 +22,9 @@ import com.svute.appsale.data.local.AppCache;
 import com.svute.appsale.presentation.adapter.OnboardDingPagerAdapter;
 import com.svute.appsale.presentation.view.activity.sign_in.SignInActivity;
 
+/**
+ * Created by Ogata on 7/25/2022.
+ */
 public class OnboarDingActivity extends AppCompatActivity {
 
     TextView tvRequestLogin;

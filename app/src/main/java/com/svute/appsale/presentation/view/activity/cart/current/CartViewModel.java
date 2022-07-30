@@ -1,4 +1,4 @@
-package com.svute.appsale.presentation.view.activity.cart;
+package com.svute.appsale.presentation.view.activity.cart.current;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package com.example.appsale29032022.presentation.adapter;
+package com.svute.appsale.presentation.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,17 +9,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.appsale29032022.R;
-import com.example.appsale29032022.common.AppConstant;
-import com.example.appsale29032022.common.StringCommon;
-import com.example.appsale29032022.data.model.Food;
+import com.svute.appsale.R;
+import com.svute.appsale.common.AppConstant;
+import com.svute.appsale.common.StringCommon;
+import com.svute.appsale.data.model.Food;
 
-
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,9 +80,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
                 public void onClick(View view) {
                     if (onItemClickFood != null) {
                         onItemClickFood.onClick(getAdapterPosition());
+
                     }
                 }
             });
+
         }
 
         public void bind(Context context, Food food) {
@@ -96,14 +95,17 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
                     .load(AppConstant.BASE_URL  + food.getImg())
                     .placeholder(R.drawable.img_logo)
                     .into(img);
+
         }
     }
 
     public void setOnItemClickFood(OnItemClickFood onItemClickFood){
         this.onItemClickFood = onItemClickFood;
+
     }
 
     public interface OnItemClickFood {
         void onClick(int position);
+
     }
 }

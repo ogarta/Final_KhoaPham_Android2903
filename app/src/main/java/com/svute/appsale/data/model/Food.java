@@ -1,10 +1,10 @@
-package com.example.appsale29032022.data.model;
+package com.svute.appsale.data.model;
 
 import java.util.List;
 
 public class Food {
 
-    private String id;
+    private String _id;
     private String name;
     private String address;
     private int price;
@@ -15,7 +15,7 @@ public class Food {
     public Food() { }
 
     public Food(String id, String name, String address, int price, String img, int quantity, List<String> gallery) {
-        this.id = id;
+        this._id = id;
         this.name = name;
         this.address = address;
         this.price = price;
@@ -24,12 +24,12 @@ public class Food {
         this.gallery = gallery;
     }
 
-    public String getId() {
-        return id;
+    public String get_id() {
+        return _id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getName() {
@@ -83,7 +83,7 @@ public class Food {
     @Override
     public String toString() {
         return "Food{" +
-                "id='" + id + '\'' +
+                "id='" + _id + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", price=" + price +

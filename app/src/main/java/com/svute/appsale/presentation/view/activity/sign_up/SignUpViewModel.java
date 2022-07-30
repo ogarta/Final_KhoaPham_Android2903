@@ -1,15 +1,21 @@
-package com.example.appsale29032022.presentation.view.activity.sign_up;
+package com.svute.appsale.presentation.view.activity.sign_up;
+
+import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import com.example.appsale29032022.data.model.User;
-import com.example.appsale29032022.data.remote.dto.AppResource;
-import com.example.appsale29032022.data.remote.dto.UserDTO;
-import com.example.appsale29032022.data.repository.AuthenticationRepository;
+
+import com.svute.appsale.data.model.User;
+import com.svute.appsale.data.remote.dto.AppResource;
+import com.svute.appsale.data.remote.dto.UserDTO;
+import com.svute.appsale.data.repository.AuthenticationRepository;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,8 +27,8 @@ public class SignUpViewModel extends ViewModel {
     private final AuthenticationRepository authenticationRepository;
     private MutableLiveData<AppResource<User>> resourceUser;
 
-    public SignUpViewModel() {
-        authenticationRepository = new AuthenticationRepository();
+    public SignUpViewModel(Context context) {
+        authenticationRepository = new AuthenticationRepository(context);
         if (resourceUser == null) {
             resourceUser = new MutableLiveData<>();
         }

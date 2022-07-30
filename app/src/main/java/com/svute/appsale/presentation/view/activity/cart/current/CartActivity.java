@@ -1,4 +1,4 @@
-package com.svute.appsale.presentation.view.activity.cart;
+package com.svute.appsale.presentation.view.activity.cart.current;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,10 +16,14 @@ import android.widget.Toast;
 
 import com.svute.appsale.R;
 import com.svute.appsale.common.StringCommon;
+import com.svute.appsale.data.model.Food;
 import com.svute.appsale.data.model.Order;
 import com.svute.appsale.data.remote.dto.AppResource;
 import com.svute.appsale.presentation.adapter.OrderAdapter;
 import com.svute.appsale.presentation.view.activity.home.HomeActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
 
@@ -54,6 +58,10 @@ public class CartActivity extends AppCompatActivity {
                 case ERROR:
                     Toast.makeText(CartActivity.this, orderAppResource.message, Toast.LENGTH_SHORT).show();
                     layoutLoading.setVisibility(View.GONE);
+                    List<Food> foodList = new ArrayList<>();
+                    foodList.add(null);
+                    orderAdapter.updateListProduct(foodList);
+                    btnConfirm.setEnabled(false);
                     break;
             }
         });

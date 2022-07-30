@@ -68,6 +68,20 @@ public class RetrofitClient {
                         return chain.proceed(chain.request());
                     }
                 })
+                .addInterceptor(new Interceptor() {
+                    @NonNull
+                    @Override
+                    public Response intercept(@NonNull Chain chain) throws IOException {
+                        String token = (String) AppCache.getInstance(context).getValue(AppConstant.TOKEN_KEY);
+                        if (token != null && !token.isEmpty()) {
+                            Request newRequest  = chain.request().newBuilder()
+                                    .addHeader("Authorization", "Bearer " + token)
+                                    .build();
+                            return chain.proceed(newRequest);
+                        }
+                        return chain.proceed(chain.request());
+                    }
+                })
                 .build();
 
         Gson gson = new GsonBuilder().create();

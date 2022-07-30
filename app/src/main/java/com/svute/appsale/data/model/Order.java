@@ -2,7 +2,7 @@ package com.svute.appsale.data.model;
 
 import java.util.List;
 
-public class OrderDTO {
+public class Order {
 
     private String id;
 
@@ -12,9 +12,9 @@ public class OrderDTO {
     private Boolean status;
     private String date_created;
 
+    public Order(){}
 
-
-    public OrderDTO(String id, List<Food> foods, String idUser, Integer price, Boolean status) {
+    public Order(String id, List<Food> foods, String idUser, Integer price, Boolean status) {
         this.id = id;
         this.foods = foods;
         this.idUser = idUser;
@@ -22,7 +22,7 @@ public class OrderDTO {
         this.status = status;
     }
 
-    public OrderDTO(String id, List<Food> foods, String idUser, Integer price, Boolean status, String date_created) {
+    public Order(String id, List<Food> foods, String idUser, Integer price, Boolean status, String date_created) {
         this.id = id;
         this.foods = foods;
         this.idUser = idUser;
@@ -88,4 +88,5 @@ public class OrderDTO {
                 ", status=" + status +
                 '}';
     }
+
 }

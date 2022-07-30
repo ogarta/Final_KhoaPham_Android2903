@@ -1,11 +1,11 @@
-package com.example.appsale29032022.data.remote.dto;
+package com.svute.appsale.data.remote.dto;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 /**
- * Created by pphat on 7/19/2022.
+ * Created by Ogata on 7/25/2022.
  */
 public class FoodDTO {
     @SerializedName("_id")

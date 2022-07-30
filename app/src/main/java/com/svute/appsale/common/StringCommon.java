@@ -1,25 +1,12 @@
-package com.example.appsale29032022.common;
+package com.svute.appsale.common;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextPaint;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
 import android.util.Patterns;
-import android.view.View;
-
-import androidx.annotation.NonNull;
-
-import com.airbnb.lottie.animation.content.Content;
-import com.example.appsale29032022.R;
 
 import java.text.DecimalFormat;
 
 /**
- * Created by pphat on 7/14/2022.
+ * Created by Ogata on 7/25/2022.
  */
 public class StringCommon {
 
@@ -36,4 +23,18 @@ public class StringCommon {
     public static String formatCurrency(int number) {
         return new DecimalFormat("#,###").format(number);
     }
+
+    /**
+     * Format Currency By YYYY-MM-DD HH:MM
+     *
+     * @param date String
+     * @return String
+     */
+    public static String formatDate(String date) {
+        String[] _date = date.split("T");
+        String[] time = _date[1].split(":");
+        int hour = Integer.parseInt(time[0])+7;
+        return _date[0]+" "+ hour+":"+time[1];
+    }
+
 }
