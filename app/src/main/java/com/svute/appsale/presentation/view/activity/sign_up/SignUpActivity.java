@@ -2,6 +2,7 @@ package com.svute.appsale.presentation.view.activity.sign_up;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -37,6 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_sign_up);
 
         initial();
@@ -55,6 +57,8 @@ public class SignUpActivity extends AppCompatActivity {
 
             if (StringCommon.isValidEmail(email) && !password.isEmpty() && !name.isEmpty() && !address.isEmpty() && phone.matches("[+-]?\\d*(\\.\\d+)?")) {
                 signUpViewModel.signUp(email, password,name,phone,address);
+            }else{
+                Toast.makeText(SignUpActivity.this,"Bạn chưa điền đầy đủ thông tin",Toast.LENGTH_SHORT);
             }
         });
     }

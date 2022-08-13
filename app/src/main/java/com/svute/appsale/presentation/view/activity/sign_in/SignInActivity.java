@@ -2,6 +2,7 @@ package com.svute.appsale.presentation.view.activity.sign_in;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -40,6 +41,7 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_sign_in);
 
         initial();
@@ -84,6 +86,8 @@ public class SignInActivity extends AppCompatActivity {
 
                 if (StringCommon.isValidEmail(email) && !password.isEmpty()) {
                     viewModel.signIn(email, password);
+                }else{
+                    Toast.makeText(SignInActivity.this,"Bạn chưa nhập tài khoản hoặc mật khẩu",Toast.LENGTH_SHORT);
                 }
             }
         });
