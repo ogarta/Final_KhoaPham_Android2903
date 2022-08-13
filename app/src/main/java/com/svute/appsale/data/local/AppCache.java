@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 
 import com.svute.appsale.common.AppConstant;
 
+import java.util.List;
 import java.util.Map;
 
 /**

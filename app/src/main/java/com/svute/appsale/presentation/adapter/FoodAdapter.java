@@ -1,6 +1,7 @@
 package com.svute.appsale.presentation.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,7 +96,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
                     .load(AppConstant.BASE_URL  + food.getImg())
                     .placeholder(R.drawable.img_logo)
                     .into(img);
-
+            Log.d("TAG", "bind: a");
         }
     }
 

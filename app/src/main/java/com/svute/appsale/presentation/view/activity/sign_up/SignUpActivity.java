@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.svute.appsale.R;
-import com.svute.appsale.common.LockScreen;
 import com.svute.appsale.common.SpannedCommon;
 import com.svute.appsale.common.StringCommon;
 import com.svute.appsale.data.model.User;
@@ -32,11 +31,11 @@ import com.svute.appsale.presentation.view.activity.sign_in.SignInActivity;
  */
 public class SignUpActivity extends AppCompatActivity {
 
-    TextInputEditText inputName, inputEmail, inputPassword, inputPhone, inputAddress;
-    LinearLayout btnSignUp, layoutLoading;
-    SignUpViewModel signUpViewModel;
-    TextView tvRegister;
-    ConstraintLayout layoutSignUp;
+    private TextInputEditText inputName, inputEmail, inputPassword, inputPhone, inputAddress;
+    private LinearLayout btnSignUp, layoutLoading;
+    private SignUpViewModel signUpViewModel;
+    private TextView tvRegister;
+    private ConstraintLayout layoutSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +79,6 @@ public class SignUpActivity extends AppCompatActivity {
                     case SUCCESS:
                         Toast.makeText(SignUpActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                         layoutLoading.setVisibility(View.GONE);
-                        LockScreen.disableLL(layoutSignUp,false);
                         Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                         startActivity(intent);
                         finish();
@@ -88,12 +86,10 @@ public class SignUpActivity extends AppCompatActivity {
                         break;
                     case LOADING:
                         layoutLoading.setVisibility(View.VISIBLE);
-                        LockScreen.disableLL(layoutSignUp,true);
                         break;
                     case ERROR:
                         Toast.makeText(SignUpActivity.this, userAppResource.message, Toast.LENGTH_SHORT).show();
                         layoutLoading.setVisibility(View.GONE);
-                        LockScreen.disableLL(layoutSignUp,false);
                         break;
                 }
             }

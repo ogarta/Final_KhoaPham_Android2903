@@ -31,10 +31,10 @@ import com.svute.appsale.presentation.view.activity.sign_in.SignInActivity;
  */
 public class OnboarDingActivity extends AppCompatActivity {
 
-    TextView tvRequestLogin;
-    LinearLayout btnGetStarted, layoutIndicator;
-    ViewPager2 onboardDingViewPager;
-    OnboardDingPagerAdapter onboardDingPagerAdapter;
+    private TextView tvRequestLogin;
+    private LinearLayout btnGetStarted, layoutIndicator;
+    private ViewPager2 onboardDingViewPager;
+    private OnboardDingPagerAdapter onboardDingPagerAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

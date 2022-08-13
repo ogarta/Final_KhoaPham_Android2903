@@ -10,9 +10,6 @@
         app:showAsAction="always"/>
     <group>
         <item
-            android:id="@+id/action_user"
-            android:title="User"/>
-        <item
             android:id="@+id/action_history"
             android:title="History"/>
         <item

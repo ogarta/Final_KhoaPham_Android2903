@@ -15,5 +15,8 @@ public class AppConstant {
     public static final String BASE_URL = "https://serverappsale.herokuapp.com/";
 
     public static final String TOKEN_KEY = "token";
+    public static final String MAIL_KEY = "token";
+    public static final String NAME_KEY = "token";
+    public static final String PHONE_KEY = "token";
 
 }

@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.svute.appsale.R;
-import com.svute.appsale.common.LockScreen;
 import com.svute.appsale.data.model.Order;
 import com.svute.appsale.data.remote.dto.AppResource;
 import com.svute.appsale.presentation.adapter.HistoryAdapter;
@@ -27,11 +26,10 @@ import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    HistoryViewModel historyViewModel;
-    RecyclerView rcvHistory;
-    LinearLayout layoutLoading, layoutHistory;
-    TextView tvSumPrice;
-    HistoryAdapter historyAdapter;
+    private HistoryViewModel historyViewModel;
+    private RecyclerView rcvHistory;
+    private LinearLayout layoutLoading;
+    private HistoryAdapter historyAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +47,9 @@ public class HistoryActivity extends AppCompatActivity {
             switch (historyAppResource.status) {
                 case LOADING:
                     layoutLoading.setVisibility(View.VISIBLE);
-                    LockScreen.disableLL(layoutHistory,true);
                     break;
                 case SUCCESS:
                     layoutLoading.setVisibility(View.GONE);
-                    LockScreen.disableLL(layoutHistory,false);
                     if(historyAppResource.data.size()<=0){
                         layoutLoading.setVisibility(View.GONE);
                         List<Order> orderList = new ArrayList<>();
@@ -66,7 +62,6 @@ public class HistoryActivity extends AppCompatActivity {
                     break;
                 case ERROR:
                     Toast.makeText(HistoryActivity.this, historyAppResource.message, Toast.LENGTH_SHORT).show();
-                    LockScreen.disableLL(layoutHistory,false);
                     break;
             }
         });
@@ -83,9 +78,7 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
     private void addControls() {
-        layoutHistory = findViewById(R.id.layout_history);
         layoutLoading = findViewById(R.id.layout_loading);
-        tvSumPrice = findViewById(R.id.textview_sum_price);
         historyViewModel = new ViewModelProvider(this, new ViewModelProvider.Factory() {
             @NonNull
             @Override
