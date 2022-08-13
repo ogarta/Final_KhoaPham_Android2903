@@ -86,8 +86,9 @@ public class SignInActivity extends AppCompatActivity {
 
                 if (StringCommon.isValidEmail(email) && !password.isEmpty()) {
                     viewModel.signIn(email, password);
-                }else{
-                    Toast.makeText(SignInActivity.this,"Bạn chưa nhập tài khoản hoặc mật khẩu",Toast.LENGTH_SHORT);
+                }
+                if (password.isEmpty() || email.isEmpty()){
+                    Toast.makeText(SignInActivity.this,"Bạn chưa nhập tài khoản hoặc mật khẩu",Toast.LENGTH_SHORT).show();
                 }
             }
         });

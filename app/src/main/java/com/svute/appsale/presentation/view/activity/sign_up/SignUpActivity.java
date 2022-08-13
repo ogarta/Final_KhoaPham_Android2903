@@ -55,10 +55,16 @@ public class SignUpActivity extends AppCompatActivity {
             String phone = inputPhone.getText().toString();
             String address = inputAddress.getText().toString();
 
+            if( password.isEmpty() || name.isEmpty() || address.isEmpty() || phone.isEmpty() || address.isEmpty()){
+                Toast.makeText(SignUpActivity.this,"Bạn vui lòng điền đầy đủ thông tin",Toast.LENGTH_SHORT).show();
+
+            }
             if (StringCommon.isValidEmail(email) && !password.isEmpty() && !name.isEmpty() && !address.isEmpty() && phone.matches("[+-]?\\d*(\\.\\d+)?")) {
+
                 signUpViewModel.signUp(email, password,name,phone,address);
             }else{
-                Toast.makeText(SignUpActivity.this,"Bạn chưa điền đầy đủ thông tin",Toast.LENGTH_SHORT);
+                Toast.makeText(SignUpActivity.this,"Bạn vui lòng kiểm tra lại thông tin",Toast.LENGTH_SHORT).show();
+
             }
         });
     }

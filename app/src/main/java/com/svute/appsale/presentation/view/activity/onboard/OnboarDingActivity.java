@@ -3,6 +3,7 @@ package com.svute.appsale.presentation.view.activity.onboard;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
@@ -14,6 +15,8 @@ import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,7 +32,7 @@ import com.svute.appsale.presentation.view.activity.sign_in.SignInActivity;
 public class OnboarDingActivity extends AppCompatActivity {
 
     TextView tvRequestLogin;
-    LinearLayout btnGetStarted;
+    LinearLayout btnGetStarted, layoutIndicator;
     ViewPager2 onboardDingViewPager;
     OnboardDingPagerAdapter onboardDingPagerAdapter;
     @Override
@@ -39,12 +42,22 @@ public class OnboarDingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_onboarding);
 
         initial();
+        setIndicator();
+        setCurrentIndicator(0);
         event();
         // Request Login Text
         setTextRequestLogin();
     }
 
     private void event() {
+        onboardDingViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                setCurrentIndicator(position);
+            }
+        });
+
         btnGetStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,9 +84,45 @@ public class OnboarDingActivity extends AppCompatActivity {
 
         onboardDingPagerAdapter = new OnboardDingPagerAdapter(this);
         onboardDingViewPager.setAdapter(onboardDingPagerAdapter);
+
+
+        layoutIndicator = findViewById(R.id.layout_indicator);
+
     }
 
-
+    private void setIndicator(){
+        ImageView[] indicators = new ImageView[onboardDingPagerAdapter.getItemCount()];
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+        layoutParams.setMargins(8,0,8,0);
+        for (int i = 0; i < indicators.length; i++) {
+            indicators[i] = new ImageView(getApplicationContext());
+            indicators[i].setImageDrawable(ContextCompat.getDrawable(
+                    getApplicationContext(),
+                    R.drawable.bacground_circle_indicator_no_act
+            ));
+            indicators[i].setLayoutParams(layoutParams);
+            layoutIndicator.addView(indicators[i]);
+        }
+    }
+    private void setCurrentIndicator(int index){
+        int childCout = layoutIndicator.getChildCount();
+        for (int i = 0; i < childCout; i++) {
+            ImageView imageView = (ImageView) layoutIndicator.getChildAt(i);
+            if(i == index){
+                imageView.setImageDrawable(ContextCompat.getDrawable(
+                        getApplicationContext(),
+                        R.drawable.background_circle_indicator_act
+                ));
+            }else{
+                imageView.setImageDrawable(ContextCompat.getDrawable(
+                        getApplicationContext(),
+                        R.drawable.bacground_circle_indicator_no_act
+                ));
+            }
+        }
+    }
     private void setTextRequestLogin() {
         SpannableStringBuilder builder = new SpannableStringBuilder();
         builder.append("Already Have An Account?");
