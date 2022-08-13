@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.svute.appsale.R;
+import com.svute.appsale.common.LockScreen;
 import com.svute.appsale.common.StringCommon;
 import com.svute.appsale.data.model.Food;
 import com.svute.appsale.data.model.Order;
@@ -30,7 +31,7 @@ public class CartActivity extends AppCompatActivity {
 
     CartViewModel cartViewModel;
     RecyclerView rcvCart;
-    LinearLayout layoutLoading, btnConfirm;
+    LinearLayout layoutLoading, btnConfirm, layoutCart;
     TextView tvSumPrice;
     OrderAdapter orderAdapter;
     @Override
@@ -49,9 +50,11 @@ public class CartActivity extends AppCompatActivity {
             switch (orderAppResource.status) {
                 case LOADING:
                     layoutLoading.setVisibility(View.VISIBLE);
+                    LockScreen.disableLL(layoutCart,true);
                     break;
                 case SUCCESS:
                     layoutLoading.setVisibility(View.GONE);
+                    LockScreen.disableLL(layoutCart,false);
                     orderAdapter.updateListProduct(orderAppResource.data.getFoods());
                     tvSumPrice.setText("Sum Price: "+String.format("%s VND", StringCommon.formatCurrency(orderAppResource.data.getPrice())));
                     setUpdateCart(orderAppResource.data.getId());
@@ -60,6 +63,7 @@ public class CartActivity extends AppCompatActivity {
                 case ERROR:
                     Toast.makeText(CartActivity.this, orderAppResource.message, Toast.LENGTH_SHORT).show();
                     layoutLoading.setVisibility(View.GONE);
+                    LockScreen.disableLL(layoutCart,false);
                     List<Food> foodList = new ArrayList<>();
                     foodList.add(null);
                     orderAdapter.updateListProduct(foodList);
@@ -93,6 +97,7 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void addControls() {
+        layoutCart = findViewById(R.id.layout_cart);
         layoutLoading = findViewById(R.id.layout_loading);
         btnConfirm = findViewById(R.id.button_confirm);
         tvSumPrice = findViewById(R.id.textview_sum_price);

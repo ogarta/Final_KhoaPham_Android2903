@@ -3,6 +3,7 @@ package com.svute.appsale.presentation.view.activity.sign_in;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.svute.appsale.R;
 import com.svute.appsale.common.AppConstant;
+import com.svute.appsale.common.LockScreen;
 import com.svute.appsale.common.SpannedCommon;
 import com.svute.appsale.common.StringCommon;
 import com.svute.appsale.data.local.AppCache;
@@ -38,6 +40,7 @@ public class SignInActivity extends AppCompatActivity {
     LinearLayout layoutLoading, btnSignIn;
     TextInputEditText txtInputEditEmail, txtInputEditPassword;
     TextView tvRegister;
+    ConstraintLayout layoutSignIn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +60,7 @@ public class SignInActivity extends AppCompatActivity {
                     case SUCCESS:
                         Toast.makeText(SignInActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                         layoutLoading.setVisibility(View.GONE);
+                        LockScreen.disableLL(layoutSignIn,false);
                         AppCache.getInstance(SignInActivity.this)
                                 .setValue(AppConstant.TOKEN_KEY, userAppResource.data.getToken())
                                 .commit();
@@ -67,10 +71,12 @@ public class SignInActivity extends AppCompatActivity {
                         break;
                     case LOADING:
                         layoutLoading.setVisibility(View.VISIBLE);
+                        LockScreen.disableLL(layoutSignIn,true);
                         break;
                     case ERROR:
                         Toast.makeText(SignInActivity.this, userAppResource.message, Toast.LENGTH_SHORT).show();
                         layoutLoading.setVisibility(View.GONE);
+                        LockScreen.disableLL(layoutSignIn,true);
                         break;
                 }
             }
@@ -103,6 +109,7 @@ public class SignInActivity extends AppCompatActivity {
         txtInputEditPassword = findViewById(R.id.textEditPassword);
         btnSignIn = findViewById(R.id.sign_in);
         tvRegister = findViewById(R.id.text_view_register);
+        layoutSignIn = findViewById(R.id.layout_sigin);
 
         viewModel = new ViewModelProvider(this, new ViewModelProvider.Factory() {
             @NonNull

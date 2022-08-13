@@ -143,4 +143,5 @@ public class OnboarDingActivity extends AppCompatActivity {
         tvRequestLogin.setHighlightColor(Color.TRANSPARENT);
         tvRequestLogin.setMovementMethod(LinkMovementMethod.getInstance());
     }
+
 }

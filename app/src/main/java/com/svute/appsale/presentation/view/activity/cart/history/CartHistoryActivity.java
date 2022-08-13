@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.svute.appsale.R;
+import com.svute.appsale.common.LockScreen;
 import com.svute.appsale.common.StringCommon;
 import com.svute.appsale.data.model.Order;
 import com.svute.appsale.data.remote.dto.AppResource;
@@ -26,7 +27,7 @@ public class CartHistoryActivity extends AppCompatActivity {
 
     CartHistoryViewModel cartHistoryViewModel;
     RecyclerView rcvCart;
-    LinearLayout layoutLoading;
+    LinearLayout layoutLoading, layoutCartHistory;
     TextView tvSumPrice, tvDate;
     int positionOrder;
     OrderHistoryAdapter orderHistoryAdapter;
@@ -53,9 +54,11 @@ public class CartHistoryActivity extends AppCompatActivity {
             switch (orderHistoryAppResource.status) {
                 case LOADING:
                     layoutLoading.setVisibility(View.VISIBLE);
+                    LockScreen.disableLL(layoutCartHistory,true);
                     break;
                 case SUCCESS:
                     layoutLoading.setVisibility(View.GONE);
+                    LockScreen.disableLL(layoutCartHistory,false);
                     orderHistoryAdapter.updateListProduct(orderHistoryAppResource.data.getFoods());
                     tvDate.setText(StringCommon.formatDate(orderHistoryAppResource.data.getDate_created()));
                     tvSumPrice.setText("Sum Price: "+String.format("%s VND", StringCommon.formatCurrency(orderHistoryAppResource.data.getPrice())));
@@ -63,6 +66,7 @@ public class CartHistoryActivity extends AppCompatActivity {
                 case ERROR:
                     Toast.makeText(CartHistoryActivity.this, orderHistoryAppResource.message, Toast.LENGTH_SHORT).show();
                     layoutLoading.setVisibility(View.GONE);
+                    LockScreen.disableLL(layoutCartHistory,false);
                     break;
             }
         });
@@ -74,6 +78,7 @@ public class CartHistoryActivity extends AppCompatActivity {
     }
 
     private void addControls() {
+        layoutCartHistory = findViewById(R.id.layout_cart_history);
         layoutLoading = findViewById(R.id.layout_loading);
         tvDate = findViewById(R.id.textview_date_history);
         tvSumPrice = findViewById(R.id.textview_sum_price_history);

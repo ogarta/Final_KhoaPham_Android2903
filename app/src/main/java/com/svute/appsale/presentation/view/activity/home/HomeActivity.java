@@ -15,10 +15,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.svute.appsale.R;
+import com.svute.appsale.common.LockScreen;
 import com.svute.appsale.data.local.AppCache;
 import com.svute.appsale.data.model.Food;
 import com.svute.appsale.data.model.Order;
@@ -41,6 +43,7 @@ public class HomeActivity extends AppCompatActivity {
     FoodAdapter foodAdapter;
     Toolbar toolBar;
     TextView tvCountCart;
+    RelativeLayout layoutHome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,14 +62,17 @@ public class HomeActivity extends AppCompatActivity {
                 switch (foodAppResource.status) {
                     case LOADING:
                         layoutLoading.setVisibility(View.VISIBLE);
+                        LockScreen.disableLL(layoutHome,true);
                         break;
                     case SUCCESS:
                         layoutLoading.setVisibility(View.GONE);
+                        LockScreen.disableLL(layoutHome,false);
                         foodAdapter.updateListProduct(foodAppResource.data);
                         break;
                     case ERROR:
                         Toast.makeText(HomeActivity.this, foodAppResource.message, Toast.LENGTH_SHORT).show();
                         layoutLoading.setVisibility(View.GONE);
+                        LockScreen.disableLL(layoutHome,false);
                         break;
                 }
             }
@@ -75,14 +81,17 @@ public class HomeActivity extends AppCompatActivity {
             switch (orderAppResource.status) {
                 case LOADING:
                     layoutLoading.setVisibility(View.VISIBLE);
+                    LockScreen.disableLL(layoutHome,true);
                     break;
                 case SUCCESS:
                     layoutLoading.setVisibility(View.GONE);
+                    LockScreen.disableLL(layoutHome,false);
                     int quantities = getQuantity(orderAppResource.data == null ? null :  orderAppResource.data.getFoods());
                     setupBadge(quantities);
                     break;
                 case ERROR:
                     layoutLoading.setVisibility(View.GONE);
+                    LockScreen.disableLL(layoutHome,false);
                     break;
             }
         });
@@ -91,14 +100,17 @@ public class HomeActivity extends AppCompatActivity {
             switch (orderAppResource.status) {
                 case LOADING:
                     layoutLoading.setVisibility(View.VISIBLE);
+                    LockScreen.disableLL(layoutHome,false);
                     break;
                 case SUCCESS:
                     layoutLoading.setVisibility(View.GONE);
+                    LockScreen.disableLL(layoutHome,true);
                     int quantities = getQuantity(orderAppResource.data == null ? null :  orderAppResource.data.getFoods());
                     setupBadge(quantities);
                     break;
                 case ERROR:
                     layoutLoading.setVisibility(View.GONE);
+                    LockScreen.disableLL(layoutHome,false);
                     break;
             }
         });
@@ -112,6 +124,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void addControls() {
+        layoutHome = findViewById(R.id.layout_home);
         layoutLoading = findViewById(R.id.layout_loading);
         toolBar = findViewById(R.id.toolbar_home);
         toolBar.setTitle("Food");

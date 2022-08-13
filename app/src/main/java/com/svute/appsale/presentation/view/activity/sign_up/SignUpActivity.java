@@ -3,6 +3,7 @@ package com.svute.appsale.presentation.view.activity.sign_up;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.svute.appsale.R;
+import com.svute.appsale.common.LockScreen;
 import com.svute.appsale.common.SpannedCommon;
 import com.svute.appsale.common.StringCommon;
 import com.svute.appsale.data.model.User;
@@ -34,6 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
     LinearLayout btnSignUp, layoutLoading;
     SignUpViewModel signUpViewModel;
     TextView tvRegister;
+    ConstraintLayout layoutSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +80,7 @@ public class SignUpActivity extends AppCompatActivity {
                     case SUCCESS:
                         Toast.makeText(SignUpActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                         layoutLoading.setVisibility(View.GONE);
+                        LockScreen.disableLL(layoutSignUp,false);
                         Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                         startActivity(intent);
                         finish();
@@ -84,10 +88,12 @@ public class SignUpActivity extends AppCompatActivity {
                         break;
                     case LOADING:
                         layoutLoading.setVisibility(View.VISIBLE);
+                        LockScreen.disableLL(layoutSignUp,true);
                         break;
                     case ERROR:
                         Toast.makeText(SignUpActivity.this, userAppResource.message, Toast.LENGTH_SHORT).show();
                         layoutLoading.setVisibility(View.GONE);
+                        LockScreen.disableLL(layoutSignUp,false);
                         break;
                 }
             }
@@ -103,6 +109,7 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp = findViewById(R.id.sign_up);
         layoutLoading = findViewById(R.id.layout_loading);
         tvRegister = findViewById(R.id.text_view_login);
+        layoutSignUp = findViewById(R.id.layout_sigup);
 
         signUpViewModel = new ViewModelProvider(this, new ViewModelProvider.Factory() {
             @NonNull
